@@ -1,0 +1,33 @@
+{
+  "name": "redis-beyond-caching",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Live demos for the talk 'Redis, Beyond Caching'",
+  "type": "module",
+  "scripts": {
+    "up": "docker compose up -d",
+    "down": "docker compose down -v",
+    "demo:cache": "tsx src/01-cache-aside/index.ts",
+    "demo:flashsale": "tsx src/01-flash-sale/index.ts",
+    "demo:ratelimit": "tsx src/02-rate-limit/index.ts",
+    "demo:lock": "tsx src/03-lock/index.ts",
+    "demo:broadcast": "tsx src/04-broadcast/index.ts",
+    "demo:internals": "tsx src/01-internals/index.ts",
+    "demo:eviction": "tsx src/01-eviction/index.ts",
+    "demo:streams:producer": "tsx src/04-streams/producer.ts",
+    "demo:streams:consumer": "tsx src/04-streams/consumer.ts",
+    "demo:streams:monitor": "tsx src/04-streams/monitor.ts",
+    "demo:streams:reclaim": "tsx src/04-streams/reclaim.ts",
+    "demo:streams:reset": "tsx src/04-streams/reset.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^3.7.0",
+    "ioredis": "^5.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

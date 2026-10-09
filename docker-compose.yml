@@ -1,0 +1,27 @@
+services:
+  redis:
+    # Redis 8 Open Source ships the Query Engine (vector search), JSON, Bloom,
+    # TimeSeries and Vector Sets in the core image — no separate "Stack" image needed.
+    image: redis:8.2
+    container_name: redis-beyond-caching
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "yes", "--appendfsync", "everysec"]
+    volumes:
+      - redis-data:/data
+
+  insight:
+    # Browse keys, streams and consumer groups visually during the demo: http://localhost:5540
+    image: redis/redisinsight:latest
+    container_name: redis-insight
+    ports:
+      - "5540:5540"
+    environment:
+      RI_REDIS_HOST: redis
+      RI_REDIS_PORT: 6379
+      RI_REDIS_ALIAS: redis-beyond-caching
+    depends_on:
+      - redis
+
+volumes:
+  redis-data:
